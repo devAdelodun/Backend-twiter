@@ -5,7 +5,7 @@ import ash from "express-async-handler";
 export const createTweet = ash(async (req, res) => {
     const newTweet = new Tweet(req.body);
     const savedTweet = await newTweet.save();
-    res.status(201).json(savedTweet);    
+    res.status(201).json(savedTweet);
 })
 
 export const getMyTweets = ash(async (req, res) => {
@@ -28,7 +28,7 @@ export const getallTweets = ash(async (req, res) => {
 
 export const deleteTweet = ash(async (req, res) => {
     const tweet = await Tweet.findById(req.params.id);
-    if(tweet.user_id === req.body.id) {
+    if(tweet.user_id.toString() === req.body.id) {
         await tweet.deleteOne();
     }
 

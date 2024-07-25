@@ -17,7 +17,7 @@ router.post("/", verifyToken, createTweet);
 router.get("/timeline/:id", getallTweets);
 router.get("/user/all/:id", getMyTweets);
 router.get("/explore", getTrendingTweets)
-router.put("/:id/like", verifyToken,likeTweet);
+router.post("/like/:id", verifyToken,likeTweet);
 router.delete("/:id",verifyToken ,deleteTweet);
 
 export default router;

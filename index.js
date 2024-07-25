@@ -4,9 +4,10 @@ import cookieParser from "cookie-parser";
 
 
 import connect from "./dbConnect/connection.js";
-import tweetsRoute from "./routes/tweetsRoute.js"
+import tweetsRoute from "./routes/tweetsRoute.js";
 import authRoute from "./routes/authRoute.js";
-import usersRoute from "./routes/usersRoute.js"
+import usersRoute from "./routes/usersRoute.js";
+import commentsRoute from "./routes/tweetsRoute.js"
 import { errorHandler } from "./middleware/error.js";
 
 const app = express();
@@ -18,7 +19,9 @@ app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/tweets", tweetsRoute);
-app.use("api/users", usersRoute)
+app.use("/api/users", usersRoute);
+app.use("/api/comments", commentsRoute);
+
 
 app.use(errorHandler)
 const port = process.env.PORT || 3000;

@@ -21,7 +21,7 @@ export const updateUser = ash(async (req, res) => {
 });
 
 export const deleteUser = ash(async (req, res) => {
-    if(req.params.id === req.user.id) {
+    if(req.params.id.toString() === req.user.id) {
         await User.findByIdAndDelete(req.params.id)
         await Tweet.remove({ userId: req.params.id })
     } else {
