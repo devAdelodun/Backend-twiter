@@ -1,6 +1,7 @@
 import ash from "express-async-handler";
 import User from "../models/usersModel.js";
 import Tweet from "../models/tweetsModel.js"
+import upload from "../middleware/upload.js";
 
 export const getUser = ash(async (req, res) => {
     const user = await User.findById(req.params.id)
@@ -61,4 +62,12 @@ export const unfollow = ash(async (req, res) => {
     }
 
     res.status(200).json({ message: "You unfollowed the user" })
-})
+});
+
+
+export const uploadFile = ash(async (req, res) => {
+  res.status(200).json({
+    message: "File uploaded successfully",
+    file: req.file,
+  });
+});

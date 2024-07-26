@@ -4,7 +4,8 @@ import {
      follow, 
      getUser, 
      unfollow, 
-     updateUser 
+     updateUser,
+     uploadFile
     } from "../controllers/userController.js";
 import { verifyToken } from "../middleware/verifyToken.js";
 
@@ -16,5 +17,6 @@ router.put("/:id", verifyToken, updateUser);
 router.delete("/id", verifyToken, deleteUser);
 router.put("/follow/:id", verifyToken, follow);
 router.put("/unfollow/:id", verifyToken, unfollow);
+router.post('/upload',verifyToken, upload.single('file'), uploadFile);
 
 export default router;
