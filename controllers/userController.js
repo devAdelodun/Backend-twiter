@@ -64,10 +64,14 @@ export const unfollow = ash(async (req, res) => {
     res.status(200).json({ message: "You unfollowed the user" })
 });
 
-
-export const uploadFile = ash(async (req, res) => {
-  res.status(200).json({
-    message: "File uploaded successfully",
-    file: req.file,
-  });
-});
+export const uploadFile = (req, res) => {
+    upload.single("profilePicture")(req, res, (error) => {
+        if (error) {
+            return res.status(400).json({ error: error.message });
+        }
+        res.status(200).json({
+            message: "File uploaded successfully",
+            file: req.file,
+        });
+    });
+};
